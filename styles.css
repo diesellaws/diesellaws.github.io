@@ -17,13 +17,14 @@ nav a:hover, .text-button:hover, .inline-link:hover { color: var(--orange); }
 .hero { min-height: 88vh; display: grid; align-items: center; overflow: hidden; }
 .hero-inner { padding: 112px 0 140px; }
 .eyebrow { margin: 0 0 20px; color: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
-.hero h1 { max-width: 1050px; margin: 0; font-size: clamp(64px, 10vw, 142px); line-height: 0.88; letter-spacing: -0.075em; background: linear-gradient(135deg, var(--pink), var(--orange) 75%); -webkit-background-clip: text; color: transparent; }
+.hero h1 { max-width: 1050px; margin: 0; padding-bottom: 0.1em; font-size: clamp(64px, 10vw, 142px); line-height: 0.96; letter-spacing: -0.075em; background: linear-gradient(135deg, var(--pink), var(--orange) 75%); -webkit-background-clip: text; color: transparent; }
 .hero-copy { max-width: 720px; margin: 40px 0 0; color: var(--muted); font-size: clamp(20px, 2vw, 28px); line-height: 1.45; letter-spacing: -0.025em; }
 .hero-actions, .footer-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
 .button { display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 15px 26px; border: 0; border-radius: 999px; cursor: pointer; font-weight: 700; transition: transform 0.2s ease, box-shadow 0.2s ease; }
 .button:hover { transform: translateY(-2px); }
 .button.primary { color: var(--white); background: linear-gradient(135deg, var(--pink), var(--orange)); box-shadow: 0 15px 28px -15px rgba(255, 38, 144, 0.75); }
 .button.secondary { color: var(--ink); background: rgba(255, 255, 255, 0.72); box-shadow: var(--shadow); }
+.hero-actions .button.secondary { border: 2px solid transparent; background: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)) padding-box, linear-gradient(135deg, var(--pink), var(--orange)) border-box; box-shadow: 0 15px 28px -18px rgba(255, 38, 144, 0.62); }
 .section-pad { padding: 128px 0; }
 .split { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 100px; align-items: center; }
 .section-intro h2, .about h2, footer h2 { margin: 0 0 28px; font-size: clamp(52px, 6.5vw, 90px); line-height: 0.95; letter-spacing: -0.06em; }
