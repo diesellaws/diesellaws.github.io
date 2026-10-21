@@ -39,11 +39,16 @@ if (processCopy && processTabs.length > 0) {
 }
 
 document.querySelectorAll('.project-toggle').forEach((button) => button.addEventListener('click', () => {
-    const project = button.closest('.project');
+    const project = button.closest('.project, .experiment-project');
     if (!button.dataset.label) button.dataset.label = button.textContent;
     const open = project.classList.toggle('open');
     button.setAttribute('aria-expanded', String(open));
-    button.textContent = open ? 'Close case study' : button.dataset.label || button.textContent;
+    button.textContent = open ? button.dataset.closeLabel || 'Close case study' : button.dataset.label || button.textContent;
+}));
+
+document.querySelectorAll('.experiment-card').forEach((card) => card.addEventListener('click', (event) => {
+    if (event.target.closest('button, a')) return;
+    card.querySelector('.project-toggle').click();
 }));
 
 document.querySelectorAll('.copy-email').forEach((button) => button.addEventListener('click', async () => {
