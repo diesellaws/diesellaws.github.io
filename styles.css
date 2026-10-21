@@ -1,4 +1,4 @@
-@font-face { font-family: Inter; font-style: normal; font-weight: 100 900; font-display: swap; src: url('/fonts/inter-v18-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: Inter; font-style: normal; font-weight: 100 900; font-display: swap; src: url('fonts/inter-v18-latin-regular.woff2') format('woff2'); }
 :root { --ink: #121213; --muted: #656a80; --soft: #dce1ed; --paper: #f7f9fb; --white: #fff; --pink: #ff2690; --orange: #ff6633; --radius: 28px; --shadow: 0 24px 60px -28px rgba(28, 31, 44, 0.38); font-family: Inter, Arial, sans-serif; color: var(--ink); background: var(--paper); }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
