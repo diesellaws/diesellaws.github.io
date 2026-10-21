@@ -46,11 +46,6 @@ document.querySelectorAll('.project-toggle').forEach((button) => button.addEvent
     button.textContent = open ? button.dataset.closeLabel || 'Close case study' : button.dataset.label || button.textContent;
 }));
 
-document.querySelectorAll('.experiment-card').forEach((card) => card.addEventListener('click', (event) => {
-    if (event.target.closest('button, a')) return;
-    card.querySelector('.project-toggle').click();
-}));
-
 document.querySelectorAll('.copy-email').forEach((button) => button.addEventListener('click', async () => {
     try {
         await navigator.clipboard.writeText('diesel@diesellaws.com');

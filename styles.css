@@ -55,7 +55,7 @@ nav a:hover, .text-button:hover, .inline-link:hover { color: var(--orange); }
 .project-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 80px; align-items: center; min-height: 720px; padding-top: 90px; padding-bottom: 90px; }
 .project-logo { max-width: 190px; max-height: 52px; margin-bottom: 26px; object-fit: contain; object-position: left center; }
 .tags { margin: 0 0 18px; color: #a2a4b2; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
-.project-copy h3, .experiment-card h3 { margin: 0 0 24px; font-size: clamp(42px, 5vw, 68px); line-height: 1; letter-spacing: -0.055em; }
+.project-copy h3 { margin: 0 0 24px; font-size: clamp(42px, 5vw, 68px); line-height: 1; letter-spacing: -0.055em; }
 .project-copy > p:not(.tags) { color: var(--muted); font-size: 18px; line-height: 1.65; }
 .project-toggle { margin-top: 18px; }
 .project-visual { position: relative; min-width: 0; filter: drop-shadow(-12px 20px 28px rgba(18, 18, 19, 0.18)); }
@@ -63,7 +63,7 @@ nav a:hover, .text-button:hover, .inline-link:hover { color: var(--orange); }
 .project:hover .project-visual img { transform: scale(1.025); }
 .project-details { display: grid; grid-template-rows: 0fr; background: linear-gradient(270deg, #f7f9fb, #dce1ed); opacity: 0; transition: grid-template-rows 0.45s ease, opacity 0.35s ease; }
 .project-details > .wrap { overflow: hidden; }
-.project.open .project-details, .experiment-project.open .project-details { grid-template-rows: 1fr; opacity: 1; }
+.project.open .project-details { grid-template-rows: 1fr; opacity: 1; }
 .details-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px 64px; padding: 72px 0; border-bottom: 1px solid rgba(101, 106, 128, 0.16); }
 .details-grid p { color: var(--muted); line-height: 1.65; }
 .case-study { padding: 24px 0 96px; }
@@ -81,21 +81,9 @@ nav a:hover, .text-button:hover, .inline-link:hover { color: var(--orange); }
 .about { background: var(--ink); color: var(--white); }
 .about h2 { background: linear-gradient(135deg, var(--pink), var(--orange)); -webkit-background-clip: text; color: transparent; }
 .about p { color: #b9bdcb; }
-.experiments { background: linear-gradient(270deg, #f7f9fb, #dce1ed); }
+.experiments { padding-bottom: 0; background: var(--paper); }
+.experiment-heading { padding-bottom: 16px; }
 .section-lead { max-width: 640px; margin: -48px 0 64px; }
-.experiment-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-.experiment-project { min-width: 0; }
-.experiment-project.open { grid-column: 1 / -1; }
-.experiment-card { height: 100%; overflow: hidden; border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow); cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-.experiment-card:hover { transform: translateY(-4px); box-shadow: 0 32px 70px -28px rgba(28, 31, 44, 0.5); }
-.experiment-card > img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
-.experiment-card > div { padding: 34px; }
-.experiment-logo { width: auto; max-width: 160px; height: 52px; margin-bottom: 24px; object-fit: contain; object-position: left center; }
-.experiment-card h3 { font-size: clamp(34px, 4vw, 52px); }
-.experiment-card p:not(.tags) { color: var(--muted); line-height: 1.65; }
-.experiment-project .project-details { margin-top: 24px; overflow: hidden; border-radius: var(--radius); }
-.experiment-project.open .experiment-card { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); height: auto; }
-.experiment-project.open .experiment-card > img { height: 100%; aspect-ratio: auto; }
 .post-youtube { width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0; border-radius: 16px; box-shadow: var(--shadow); }
 footer { padding: 120px 0 50px; background: var(--paper); text-align: center; }
 .footer-inner { display: flex; flex-direction: column; align-items: center; }
@@ -125,5 +113,5 @@ footer h2 { max-width: 100%; margin: 0 0 18px; padding: 0.08em 0.08em 0.14em; ov
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { opacity: 1; transform: none; transition: none; } * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
-@media (max-width: 900px) { .site-header { padding: 14px 20px; } nav { gap: 16px; } nav a[href="#work"], nav a[href="#about"] { display: none; } .hero { min-height: auto; } .hero-inner { padding: 100px 0; } .split, .project-grid, .post-card, .experiment-project.open .experiment-card { grid-template-columns: 1fr; gap: 50px; } .section-pad { padding: 90px 0; } .reviews-layout { gap: 50px; } .sticky-intro { position: static; } .project-grid { min-height: auto; } .project-visual img { width: 150%; height: auto; max-width: none; } .experiment-project.open .experiment-card > img { height: auto; aspect-ratio: 16 / 10; } .details-grid { grid-template-columns: 1fr; gap: 20px; } .case-images.duo, .case-images.trio { grid-template-columns: 1fr; } .post-card { gap: 0; } .post-card img { min-height: 240px; } }
-@media (max-width: 640px) { .wrap, .narrow { width: min(100% - 32px, 1200px); } .site-header { gap: 12px; } .brand img { width: 36px; height: 36px; } nav { gap: 13px; } nav a, .text-button { font-size: 12px; } nav a[href="https://www.linkedin.com/in/diesellaws/"] { display: none; } .hero-inner { padding: 80px 0 100px; } .hero h1 { font-size: clamp(54px, 19vw, 90px); } .hero-copy { font-size: 19px; } .section-pad { padding: 72px 0; } .process-panel { padding: 22px; } .process-tabs { grid-template-columns: repeat(4, 1fr); margin-bottom: 40px; } .review-grid, .experiment-grid { grid-template-columns: 1fr; } .review-card { min-height: 220px; } .section-title { margin-bottom: 48px; } .project-grid { padding-top: 64px; padding-bottom: 64px; } .project-copy h3 { font-size: 42px; } .project-visual { border-radius: 18px; } .footer-actions { flex-direction: column; width: 100%; } .footer-actions .button { width: 100%; } }
+@media (max-width: 900px) { .site-header { padding: 14px 20px; } nav { gap: 16px; } nav a[href="#work"], nav a[href="#about"] { display: none; } .hero { min-height: auto; } .hero-inner { padding: 100px 0; } .split, .project-grid, .post-card { grid-template-columns: 1fr; gap: 50px; } .section-pad { padding: 90px 0; } .reviews-layout { gap: 50px; } .sticky-intro { position: static; } .project-grid { min-height: auto; } .project-visual img { width: 150%; height: auto; max-width: none; } .details-grid { grid-template-columns: 1fr; gap: 20px; } .case-images.duo, .case-images.trio { grid-template-columns: 1fr; } .post-card { gap: 0; } .post-card img { min-height: 240px; } }
+@media (max-width: 640px) { .wrap, .narrow { width: min(100% - 32px, 1200px); } .site-header { gap: 12px; } .brand img { width: 36px; height: 36px; } nav { gap: 13px; } nav a, .text-button { font-size: 12px; } nav a[href="https://www.linkedin.com/in/diesellaws/"] { display: none; } .hero-inner { padding: 80px 0 100px; } .hero h1 { font-size: clamp(54px, 19vw, 90px); } .hero-copy { font-size: 19px; } .section-pad { padding: 72px 0; } .process-panel { padding: 22px; } .process-tabs { grid-template-columns: repeat(4, 1fr); margin-bottom: 40px; } .review-grid { grid-template-columns: 1fr; } .review-card { min-height: 220px; } .section-title { margin-bottom: 48px; } .project-grid { padding-top: 64px; padding-bottom: 64px; } .project-copy h3 { font-size: 42px; } .project-visual { border-radius: 18px; } .footer-actions { flex-direction: column; width: 100%; } .footer-actions .button { width: 100%; } }
