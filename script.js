@@ -38,13 +38,31 @@ if (processCopy && processTabs.length > 0) {
     startProcessTimer();
 }
 
-document.querySelectorAll('.project-toggle').forEach((button) => button.addEventListener('click', () => {
-    const project = button.closest('.project, .experiment-project');
-    if (!button.dataset.label) button.dataset.label = button.textContent;
-    const open = project.classList.toggle('open');
-    button.setAttribute('aria-expanded', String(open));
-    button.textContent = open ? button.dataset.closeLabel || 'Close case study' : button.dataset.label || button.textContent;
-}));
+document.querySelectorAll('.project').forEach((project) => {
+    const button = project.querySelector('.project-toggle');
+    const visual = project.querySelector('.project-visual');
+    if (!button || !visual) return;
+    const title = project.querySelector('.project-copy h3')?.textContent || 'case study';
+    button.dataset.label = button.textContent;
+    visual.tabIndex = 0;
+    visual.setAttribute('role', 'button');
+    visual.setAttribute('aria-expanded', 'false');
+    visual.setAttribute('aria-label', `Open ${title}`);
+    const toggleProject = () => {
+        const open = project.classList.toggle('open');
+        button.setAttribute('aria-expanded', String(open));
+        button.textContent = open ? button.dataset.closeLabel || 'Close case study' : button.dataset.label;
+        visual.setAttribute('aria-expanded', String(open));
+        visual.setAttribute('aria-label', `${open ? 'Close' : 'Open'} ${title}`);
+    };
+    button.addEventListener('click', toggleProject);
+    visual.addEventListener('click', toggleProject);
+    visual.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        toggleProject();
+    });
+});
 
 document.querySelectorAll('.copy-email').forEach((button) => button.addEventListener('click', async () => {
     try {
