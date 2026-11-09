@@ -41,7 +41,8 @@ if (processCopy && processTabs.length > 0) {
 document.querySelectorAll('.project').forEach((project) => {
     const button = project.querySelector('.project-toggle');
     const visual = project.querySelector('.project-visual');
-    if (!button || !visual) return;
+    const details = project.querySelector('.project-details');
+    if (!button || !visual || !details) return;
     const title = project.querySelector('.project-copy h3')?.textContent || 'case study';
     button.dataset.label = button.textContent;
     visual.tabIndex = 0;
@@ -54,6 +55,7 @@ document.querySelectorAll('.project').forEach((project) => {
         button.textContent = open ? button.dataset.closeLabel || 'Close case study' : button.dataset.label;
         visual.setAttribute('aria-expanded', String(open));
         visual.setAttribute('aria-label', `${open ? 'Close' : 'Open'} ${title}`);
+        if (open) requestAnimationFrame(() => details.scrollIntoView({ behavior: 'smooth', block: 'start' }));
     };
     button.addEventListener('click', toggleProject);
     visual.addEventListener('click', toggleProject);
@@ -75,6 +77,31 @@ document.querySelectorAll('.copy-email').forEach((button) => button.addEventList
     }
 }));
 
+const menuToggle = document.querySelector('.menu-toggle');
+const siteNavigation = document.querySelector('#site-navigation');
+if (menuToggle && siteNavigation) {
+    const closeNavigation = () => {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open navigation');
+        siteNavigation.classList.remove('open');
+    };
+    menuToggle.addEventListener('click', () => {
+        const open = menuToggle.getAttribute('aria-expanded') !== 'true';
+        menuToggle.setAttribute('aria-expanded', String(open));
+        menuToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+        siteNavigation.classList.toggle('open', open);
+    });
+    siteNavigation.querySelectorAll('a, button').forEach((control) => control.addEventListener('click', closeNavigation));
+    document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape' || menuToggle.getAttribute('aria-expanded') !== 'true') return;
+        closeNavigation();
+        menuToggle.focus();
+    });
+    window.matchMedia('(max-width: 640px)').addEventListener('change', (event) => {
+        if (!event.matches) closeNavigation();
+    });
+}
+
 const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
     if (entry.isIntersecting) {
         entry.target.classList.add('visible');
@@ -82,12 +109,3 @@ const observer = new IntersectionObserver((entries) => entries.forEach((entry) =
     }
 }), { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
-
-const header = document.querySelector('.site-header');
-let lastScroll = window.scrollY;
-window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
-    header.classList.toggle('hidden', currentScroll > lastScroll + 8 && currentScroll > 120);
-    if (currentScroll < lastScroll - 8 || currentScroll < 20) header.classList.remove('hidden');
-    lastScroll = currentScroll;
-}, { passive: true });
